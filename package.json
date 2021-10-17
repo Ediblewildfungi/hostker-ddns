@@ -1,0 +1,20 @@
+{
+  "name": "hostker-ddns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./main.js"
+  },
+  "keywords": [
+    "ddns"
+  ],
+  "author": "Ediblewildfungi <jianghhui@gmail.com> (https://github.com/Ediblewildfungi)",
+  "license": "MIT",
+  "dependencies": {
+    "internal-ip": "^6.2.0",
+    "node-fetch": "^2.6.1",
+    "public-ip": "^4.0.4"
+  }
+}
