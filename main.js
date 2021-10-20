@@ -1,6 +1,7 @@
 const publicIp = require('public-ip')
 const dns = require('./middleware/dns')
 const conf = require('./config')
+const schedule = require('node-schedule')
 const fetch = require('node-fetch')
 
 const dnsEditRecord = ['https://i.hostker.com/api/dnsEditRecord']
@@ -37,7 +38,15 @@ async function ddns() {
 
 }
 
-
+//执行操作
 ddns()
+
+//定时操作
+let job = schedule.scheduleJob('10 * * * * *', () => {
+	console.log(new Date())
+	ddns()
+  });
+
+
 
 
