@@ -10,8 +10,16 @@
   "keywords": [
     "ddns"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ediblewildfungi/hostker-ddns.git"
+  },
   "author": "Ediblewildfungi <jianghhui@gmail.com> (https://github.com/Ediblewildfungi)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ediblewildfungi/hostker-ddns/issues"
+  },
+  "homepage": "https://github.com/Ediblewildfungi/hostker-ddns#readme",
   "dependencies": {
     "internal-ip": "^6.2.0",
     "node-fetch": "^2.6.1",
