@@ -38,15 +38,16 @@ async function ddns() {
 
 }
 
-//执行操作
-ddns()
+// 设定规则 每半小时
+let rule = new schedule.RecurrenceRule()
+rule.minute = 30
+rule.second = 0
 
 //定时操作
-let job = schedule.scheduleJob('10 * * * * *', () => {
+let job = schedule.scheduleJob(rule, () => {
 	console.log(new Date())
+
+	//发送请求
 	ddns()
-  });
-
-
-
+  })
 
