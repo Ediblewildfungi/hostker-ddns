@@ -18,7 +18,8 @@ module.exports = {
     account: {
         hostker: {
             email: "在此填入你的hostker 邮箱帐号",
-            token: "在此填入你的hostker token"
+            token: "在此填入你的hostker token",
+            id:1234567 //要更改域名id
         }
     },
     aliyun: {}
