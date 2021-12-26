@@ -10,9 +10,10 @@
 
  编辑 `config_default.js` 文件，填入相关参数
 
-``` json
+``` js
 
- {
+module.exports = {
+    
     //基础参数配置
     dns: {
 
