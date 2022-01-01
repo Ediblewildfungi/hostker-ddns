@@ -44,6 +44,13 @@ module.exports = {
 重命名  `config_default.js` 为   `config` 
 
 ``` bash
+git clone https://github.com/Ediblewildfungi/hostker-ddns.git
 npm i
 npm start
+```
+
+后台运行
+
+```bash
+nohup npm start &
 ```

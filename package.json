@@ -1,8 +1,9 @@
 {
   "name": "hostker-ddns",
   "version": "1.0.0",
-  "description": "",
+  "description": "ddns tool",
   "main": "main.js",
+  "private": false,
   "scripts": {
     "test": "test",
     "start": "node ./main.js"

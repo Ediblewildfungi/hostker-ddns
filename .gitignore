@@ -1,12 +1,13 @@
-#  AgoraIO/Tools
-rtc
+# loacl config
+config.js
 
 #  build file
 dist/
 localTest/
 
-# loacl config
-config.js
+#packages config
+package.json-npm
+package.json-github
 
 # Logs
 logs
