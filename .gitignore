@@ -4,9 +4,18 @@ rtc
 #  build file
 dist/
 localTest/
+dist
+dist-ssr
 
 # loacl config
 config.js
+
+# IDE config
+.vscode
+
+# Local files
+.DS_Store
+*.local
 
 # Logs
 logs
