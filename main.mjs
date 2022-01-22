@@ -1,10 +1,13 @@
-const publicIp = require('public-ip')
-const dns = require('./middleware/dns')
-const conf = require('./config')
-const schedule = require('node-schedule')
-const fetch = require('node-fetch')
+import schedule from 'node-schedule';
+import fs from 'fs'
+import YAML from 'yaml'
+import fetch from 'node-fetch'
+import publicIp from 'public-ip';
 
 const dnsEditRecord = ['https://i.hostker.com/api/dnsEditRecord']
+
+const file = fs.readFileSync('./config.yml', 'utf8')
+const conf = YAML.parse(file)
 
 async function ddns() {
 
@@ -17,8 +20,8 @@ async function ddns() {
 		ip_address = await publicIp.v6()
 	}
 	console.log(ip_address)
-	
-	questData = {
+
+	let questData = {
 		email: conf.account.hostker.email,
 		token: conf.account.hostker.token,
 		id: conf.account.hostker.id,
@@ -27,12 +30,11 @@ async function ddns() {
 		priority: conf.dns.priority,
 	}
 
-
-	questheaders = {
+	let questheaders = {
 		"Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
 	}
 
-	putdns = await fetch(dnsEditRecord, { method: 'POST', headers: questheaders, body: new URLSearchParams(questData).toString() })
+	let putdns = await fetch(dnsEditRecord, { method: 'POST', headers: questheaders, body: new URLSearchParams(questData).toString() })
 
 	// if (putdns.ok){
 	// 	ctx.sendOk(await eWeatherResponse.json())
