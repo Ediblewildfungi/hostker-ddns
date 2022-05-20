@@ -1,0 +1,21 @@
+dns:
+    # 基础参数配置
+
+    ip4: false
+    # 是否启用ipv4
+
+    ip6: true
+    #是否启用ipv6
+
+    ipAddress: 
+
+    ttl: 200
+    priority: 5
+
+account:
+    #域名服务器参数配置
+    hostker:
+        email: your-email
+        token: your-api-token
+        id: 202798
+    aliyun:

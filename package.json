@@ -1,20 +1,20 @@
 {
   "name": "hostker-ddns",
   "version": "1.0.0",
-  "description": "ddns tool",
+  "description": "[![GitHub](https://img.shields.io/github/license/Ediblewildfungi/hostker-ddns?color=1ccc1a)](https://opensource.org/licenses/MIT)",
   "main": "main.js",
   "private": false,
   "scripts": {
     "test": "test",
-    "start": "node ./main.js"
+    "start": "node  ./main.mjs"
   },
-  "keywords": [
-    "ddns"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ediblewildfungi/hostker-ddns.git"
   },
+  "keywords": [
+    "ddns"
+  ],
   "author": "Ediblewildfungi <jianghhui@gmail.com> (https://github.com/Ediblewildfungi)",
   "license": "MIT",
   "bugs": {
@@ -22,9 +22,10 @@
   },
   "homepage": "https://github.com/Ediblewildfungi/hostker-ddns#readme",
   "dependencies": {
-    "internal-ip": "^6.2.0",
-    "node-fetch": "^2.6.1",
-    "node-schedule": "^2.0.0",
-    "public-ip": "^4.0.4"
+    "koa": "^2.13.4",
+    "node-fetch": "^3.2.0",
+    "node-schedule": "^2.1.0",
+    "public-ip": "^5.0.0",
+    "yaml": "^1.10.2"
   }
 }

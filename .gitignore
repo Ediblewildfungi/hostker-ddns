@@ -4,10 +4,24 @@ config.js
 #  build file
 dist/
 localTest/
+dist
+dist-ssr
+
+# loacl config
+config.js
+config.yml
+
+# IDE config
+.vscode
+
+# Local files
+.DS_Store
+*.local
 
 #packages config
 package.json-npm
 package.json-github
+
 
 # Logs
 logs

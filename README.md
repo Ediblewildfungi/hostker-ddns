@@ -8,49 +8,63 @@
 
 使用方法：
 
- 编辑 `config_default.js` 文件，填入相关参数
+ 编辑 `config_default.yml` 文件，填入相关参数
 
-``` js
+``` yml
 
-module.exports = {
-    
-    //基础参数配置
-    dns: {
+dns:
+    # 基础参数配置
 
-        //是否启用ipv4
-        ip4: false,
+    ip4: false
+    # 是否启用ipv4
 
-        //是否启用ipv6 ,目前 IPv4和IPv6 两者只能二选一
-        ip6: true,
+    ip6: true
+    #是否启用ipv6
 
-        ttl:200,
-        priority:5,
+    ipAddress: 123
+    #随便填，会自动更新成对应地址
 
-    },
-    
-    //域名服务器参数配置
-    account: {
-        hostker: {
-            email: "在此填入你的hostker 邮箱帐号",
-            token: "在此填入你的hostker token",
-             id:123456 //要更改域名id
-        }
-    },
-    aliyun: {}
-}
+    ttl: 200
+    priority: 5
+
+account:
+    #域名服务器参数配置
+
+    hostker:
+        email: your-email
+         #账号
+
+        token: your-api-token
+        #token
+
+        id:  12366
+        #域名id，如何查询见下文
+
+    aliyun:
+    #开发中
 
 ```
+重命名  `config_default.yml` 为   `config.yml` 
 
-重命名  `config_default.js` 为   `config` 
+运行：
 
 ``` bash
 git clone https://github.com/Ediblewildfungi/hostker-ddns.git
 npm i
 npm start
 ```
-
 后台运行
-
 ```bash
 nohup npm start &
 ```
+
+### 关于如何查询Hostker的解析id：
+``` bash
+curl --location --request POST 'https://i.hostker.com/api/dnsGetRecords' \
+--form 'email="<你的邮箱>"' \
+--form 'token="<你的token>"' \
+--form 'domain="<你的域名>"'
+```
+
+该指令可以打印出你所有域名解析记录的信息，可以查到对应解析的id号。
+
