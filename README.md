@@ -8,6 +8,12 @@
 
 使用方法：
 
+运行：
+
+``` bash
+git clone https://github.com/Ediblewildfungi/hostker-ddns.git
+```
+
  编辑 `config_default.yml` 文件，填入相关参数
 
 ``` yml
@@ -49,7 +55,6 @@ account:
 运行：
 
 ``` bash
-git clone https://github.com/Ediblewildfungi/hostker-ddns.git
 npm i
 npm start
 ```
