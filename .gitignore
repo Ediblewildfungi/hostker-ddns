@@ -9,6 +9,7 @@ dist-ssr
 
 # loacl config
 config.js
+config.yml
 
 # IDE config
 .vscode
