@@ -11,21 +11,22 @@ const conf = YAML.parse(file)
 
 async function ddns() {
 
-	// console.log(await publicIp.v4())
-	// console.log(await publicIp.v6())
+	var ipAddress = ""
 
-	var ip_address = await publicIp.v4()
-
-	if (conf.dns.ip6) {
-		ip_address = await publicIp.v6()
+	if (conf.dns.ip4) {
+		ipAddress = await publicIp.v4()
+	} else if (conf.dns.ip6) {
+		ipAddress = await publicIp.v6()
 	}
-	console.log(ip_address)
+
+	console.log('Current ip address: ' + ipAddress)
+	console.log('saved ip address: ' + conf.dns.ipAddress)
 
 	let questData = {
 		email: conf.account.hostker.email,
 		token: conf.account.hostker.token,
 		id: conf.account.hostker.id,
-		data: ip_address,
+		data: ipAddress,
 		ttl: conf.dns.ttl,
 		priority: conf.dns.priority,
 	}
@@ -34,22 +35,41 @@ async function ddns() {
 		"Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
 	}
 
-	let putdns = await fetch(dnsEditRecord, { method: 'POST', headers: questheaders, body: new URLSearchParams(questData).toString() })
+	if (ipAddress == conf.dns.ipAddress) {
 
-	// if (putdns.ok){
-	// 	ctx.sendOk(await eWeatherResponse.json())
-	// 	return next()
-	// }
+		console.log("No update required")
+		console.log("# IP地址没有变化，未进行更新")
 
-	console.log(await putdns.json())
+	} else {
+		let putdns = await fetch(dnsEditRecord, { method: 'POST', headers: questheaders, body: new URLSearchParams(questData).toString() })
 
+		let feedback = await putdns.json()
+
+		console.log("feedback: " + feedback.success)
+
+		while (feedback.success !== 0) {
+
+			console.log('Update failed! Retry in progress ... ')
+			console.log("# 更新失败，重试中")
+
+			putdns = await fetch(dnsEditRecord, { method: 'POST', headers: questheaders, body: new URLSearchParams(questData).toString() })
+			feedback = await putdns.json()
+
+			console.log("feedback: " + feedback.success)
+
+		}
+		conf.dns.ipAddress = ipAddress
+		fs.writeFileSync('./config.yml', YAML.stringify(conf))
+		console.log('Update successful : ' + ipAddress)
+		console.log("# 更新成功！")
+	}
 }
 
 ddns()
 
-// 设定规则 每半小时
+// 设定规则 
 let rule = new schedule.RecurrenceRule()
-rule.minute = 30
+// rule.minute = 0
 rule.second = 0
 
 //定时操作
