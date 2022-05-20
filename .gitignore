@@ -1,5 +1,5 @@
-#  AgoraIO/Tools
-rtc
+# loacl config
+config.js
 
 #  build file
 dist/
@@ -17,6 +17,11 @@ config.yml
 # Local files
 .DS_Store
 *.local
+
+#packages config
+package.json-npm
+package.json-github
+
 
 # Logs
 logs

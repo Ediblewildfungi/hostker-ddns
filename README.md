@@ -49,10 +49,14 @@ account:
 运行：
 
 ``` bash
+git clone https://github.com/Ediblewildfungi/hostker-ddns.git
 npm i
 npm start
 ```
-
+后台运行
+```bash
+nohup npm start &
+```
 
 ### 关于如何查询Hostker的解析id：
 ``` bash
@@ -63,3 +67,4 @@ curl --location --request POST 'https://i.hostker.com/api/dnsGetRecords' \
 ```
 
 该指令可以打印出你所有域名解析记录的信息，可以查到对应解析的id号。
+
