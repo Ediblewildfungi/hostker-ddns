@@ -6,6 +6,9 @@
 
 目前已经实现 Hostker 的 DDNS 接口
 
+> 注意：13以下版本的node可能不受支持，建议采用新版本的node，13以下版本可能需要使用`--experimental-modules` 参数
+
+
 使用方法：
 
 运行：
