@@ -2,7 +2,8 @@ import schedule from 'node-schedule';
 import fs from 'fs'
 import YAML from 'yaml'
 import fetch from 'node-fetch'
-import publicIp from 'public-ip';
+// import publicIp from 'public-ip';
+import { publicIp, publicIpv4, publicIpv6 } from 'public-ip';
 
 const dnsEditRecord = ['https://i.hostker.com/api/dnsEditRecord']
 
@@ -13,10 +14,16 @@ async function ddns() {
 
 	var ipAddress = ""
 
+
 	if (conf.dns.ip4) {
-		ipAddress = await publicIp.v4()
+		ipAddress = await publicIpv4()
 	} else if (conf.dns.ip6) {
-		ipAddress = await publicIp.v6()
+		ipAddress = await publicIpv6({
+			onlyHttps:true,
+			fallbackUrls: [
+				'https://ifconfig.co/ip'
+			]
+		})
 	}
 
 	console.log('Current ip address: ' + ipAddress)
