@@ -13,13 +13,13 @@ const conf = YAML.parse(file)
 async function ddns() {
 
 	var ipAddress = ""
-
+	let retry_tag = 0
 
 	if (conf.dns.ip4) {
 		ipAddress = await publicIpv4()
 	} else if (conf.dns.ip6) {
 		ipAddress = await publicIpv6({
-			onlyHttps:true,
+			onlyHttps: true,
 			fallbackUrls: [
 				'https://ifconfig.co/ip'
 			]
@@ -54,7 +54,8 @@ async function ddns() {
 
 		console.log("feedback: " + feedback.success)
 
-		while (feedback.success !== 0) {
+		while (feedback.success !== 0 && retry_tag <= 2) {
+
 
 			console.log('Update failed! Retry in progress ... ')
 			console.log("# 更新失败，重试中")
@@ -63,12 +64,21 @@ async function ddns() {
 			feedback = await putdns.json()
 
 			console.log("feedback: " + feedback.success)
+			retry_tag++
+			console.log("retry_tag: " + retry_tag)
 
 		}
-		conf.dns.ipAddress = ipAddress
-		fs.writeFileSync('./config.yml', YAML.stringify(conf))
-		console.log('Update successful : ' + ipAddress)
-		console.log("# 更新成功！")
+
+		if (retry_tag <= 2) {
+			conf.dns.ipAddress = ipAddress
+			fs.writeFileSync('./config.yml', YAML.stringify(conf))
+			console.log('Update successful : ' + ipAddress)
+			console.log("# 更新成功！")
+		} else {
+			console.log("# Timeout for updates!")
+			console.log(Date.now() + "# 更新超时！等待下一次重试")
+		}
+
 	}
 }
 
