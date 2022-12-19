@@ -54,7 +54,7 @@ async function ddns() {
 
 		console.log("feedback: " + feedback.success)
 
-		while (feedback.success !== 0 && retry_tag <= 2) {
+		while (feedback.success !== 1 && retry_tag <= 2) {
 
 
 			console.log('Update failed! Retry in progress ... ')
